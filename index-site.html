@@ -70,6 +70,13 @@
     --or: #c9a84c;
     --text: #2a2a2a;
     --text-light: #6b6b6b;
+
+    /* Variables utilisées par la modale des mentions légales */
+    --cream: var(--beige);
+    --sand-light: var(--beige-dark);
+    --sand: var(--bois-clair);
+    --earth-dark: var(--vert);
+    --sage: var(--vert-clair);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -301,7 +308,7 @@
 
   /* ── SECTION BASE ── */
   section {
-    padding: 6rem 4rem;
+    padding: 3rem 4rem;
     position: relative;
   }
 
@@ -882,9 +889,6 @@
   box-shadow: 0 20px 60px rgba(0,0,0,0.25);
   animation: modalIn 0.4s ease;
 }
-.modal-content { padding: 2rem 2.5rem 3rem; }
-.modal-content section { margin-bottom: 2rem; }
-
 .modal-close {
   position: sticky;
   top: 0;
@@ -915,12 +919,92 @@
   border-bottom: 1px solid var(--sand-light);
 }
 .modal-header .eyebrow { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--sage); margin-bottom: 0.8rem; display: block; }
-.modal-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400; color: var(--earth-dark); line-height: 1.2; }
-.modal-header h2 em { font-style: italic; color: var(--sage); }
+.modal-header h1 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400; color: var(--earth-dark); line-height: 1.2; }
+.modal-header h1 em { font-style: italic; color: var(--sage); }
 .modal-header .lead { margin-top: 1rem; font-size: 0.92rem; color: var(--text-light); max-width: 560px; margin-left: auto; margin-right: auto; }
 
 .modal-content { padding: 2rem 2.5rem 3rem; }
-.modal-content section { margin-bottom: 2rem; }
+.modal-content section { margin-bottom: 0.2rem; }
+
+.modal-content h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--earth-dark);
+  margin-bottom: 0.6rem;
+}
+
+.modal-content h2 .num {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--sage);
+  color: white;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content section p {
+  font-size: 0.88rem;
+  line-height: 1.75;
+  color: var(--text-light);
+  margin-bottom: 0.5rem;
+}
+
+.modal-content section p:last-child { margin-bottom: 0; }
+.modal-content section p strong { color: var(--text); }
+
+.modal-content section a {
+  color: var(--sage);
+  text-decoration: underline;
+}
+
+.info-block {
+  background: var(--cream);
+  border-radius: 8px;
+  padding: 1.2rem 1.5rem;
+  margin-top: 0.8rem;
+}
+
+.info-block dl {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  row-gap: 0.6rem;
+  column-gap: 1rem;
+}
+
+.info-block dt {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-light);
+}
+
+.info-block dd {
+  font-size: 0.88rem;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.info-block dd a { color: var(--earth-dark); text-decoration: underline; }
+
+.updated {
+  text-align: center;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--text-light);
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--sand-light);
+}
 
 
   /* ── ANIMATIONS ── */
@@ -968,6 +1052,8 @@
     .espace-grid { grid-template-columns: 1fr 1fr; }
     .horaires-grid { grid-template-columns: 1fr; }
     .prestation-grid { grid-template-columns: 1fr; }
+    .info-block dl { grid-template-columns: 1fr; row-gap: 0.2rem; }
+    .info-block dd { margin-bottom: 0.6rem; }
     .team-grid { grid-template-columns: 1fr; }
     .contact-layout { grid-template-columns: 1fr; gap: 2rem; }
     .form-row { grid-template-columns: 1fr; }
@@ -1169,7 +1255,7 @@
 <section class="horaires" id="horaires">
   <div class="section-label">Infos pratiques</div>
   <h2 class="section-title">Horaires <em>d'ouverture</em></h2>
-  <p class="section-intro">Voici nos horaires et le détail par prestation pour organiser votre venue au mieux.</p>
+  <p class="section-intro">Voici nos horaires généraux ainsi que le détail par prestation, pour organiser votre venue au mieux.</p>
 
   <div class="horaires-general">
     <h3 class="horaires-subtitle">Horaires généraux</h3>
@@ -1182,12 +1268,12 @@
       <div class="horaire-card">
         <div class="horaire-jours">Mercredi</div>
         <div class="horaire-heures">Sur rendez-vous</div>
-        <p class="horaire-note">Ouvert uniquement sur rendez-vous pour la journée</p>
+        <p class="horaire-note">Ouvert uniquement sur rendez-vous pour la journée, avec une ouverture spécifique le midi.</p>
       </div>
       <div class="horaire-card horaire-ferme">
         <div class="horaire-jours">Samedi après-midi · Dimanche</div>
         <div class="horaire-heures">Fermé au public</div>
-        <!--<p class="horaire-note">Hors accès spécifique pour Shirley.</p>-->
+        <p class="horaire-note">Hors accès spécifique pour Charlie.</p>
       </div>
     </div>
   </div>
@@ -1198,22 +1284,22 @@
       <div class="prestation-card">
         <div class="prestation-icon">💆‍♀️</div>
         <div class="prestation-name">Massages & Bilans nutritionnels</div>
-        <p class="prestation-desc">Uniquement sur rendez-vous</p>
+        <p class="prestation-desc">Uniquement sur rendez-vous, notamment pour permettre de caler les rendez-vous de Charlie.</p>
       </div>
       <div class="prestation-card">
         <div class="prestation-icon">🧇</div>
         <div class="prestation-name">Restauration — Gaufres protéinées</div>
-        <p class="prestation-desc">Ouvert uniquement de 12h00 à 14h00.</p>
+        <p class="prestation-desc">Ouvert uniquement le midi, de 12h00 à 14h00.</p>
       </div>
       <div class="prestation-card">
         <div class="prestation-icon">🏋️</div>
         <div class="prestation-name">Sport en accès libre</div>
-        <p class="prestation-desc">Du lundi au vendredi, de 12h00 à 14h00 (le mercredi diffusion de vidéos sportives, sans cours dispensés).</p>
+        <p class="prestation-desc">Du lundi au vendredi, de 12h00 à 14h00 : pendant que Charlie ne masse pas, profitez de votre séance, d'une douche et d'un shaker ou d'une gaufre. Le mercredi, accès libre également possible sur ce créneau (diffusion de vidéos sportives, sans cours dispensé).</p>
       </div>
       <div class="prestation-card">
         <div class="prestation-icon">🏃</div>
-        <div class="prestation-name">Marche & Run — Samedi (occasionnellement)</div>
-        <p class="prestation-desc">De 9h00 à 11h00. Parcours proposés : 3,5 km, 5 km et 10 km. La restauration ouvre juste après ces sessions.</p>
+        <div class="prestation-name">Marche & Run — Samedi matin</div>
+        <p class="prestation-desc">De 9h00 à 11h00 (potentiellement pas tous les samedis en juillet et août). Parcours proposés : 3,5 km, 5 km et 10 km. La restauration ouvre juste après ces sessions.</p>
       </div>
     </div>
   </div>
@@ -1227,7 +1313,7 @@
   <div class="team-grid">
     <div class="team-card">
       <div class="team-photo-wrap">
-		<img src="img/laetitia.jpg"	alt="Photo équipe" class="team-photo team-photo-left">
+		<img src="img/Laetitia.jpg"	alt="Photo équipe" class="team-photo team-photo-left">
         
       </div>
       <div class="team-name">Laetitia</div>
@@ -1308,76 +1394,69 @@
 <!-- MODAL Mentions legales -->
 <div class="modal-overlay" id="mentionsModal" onclick="if(event.target===this){this.classList.remove('active');document.body.style.overflow='';}">
   <div class="modal-box">
-    <div class="modal-close"><button onclick="document.getElementById('mentionsModal').classList.remove('active');document.body.style.overflow='';" aria-label="Fermer">✕</button></div>
-    <div class="modal-header">
-	  <div class="eyebrow">Informations légales</div>
-	  <h1>Mentions <em>légales</em></h1>
-	  <p class="lead">Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique, voici les informations relatives à l'éditeur et à l'hébergeur de ce site.</p>
-    <div class="modal-content">
-		 <section>
-			<h2><span class="num">01</span>Éditeur du site</h2>
-			<p>Le site <strong>Energy'B</strong> est édité par&nbsp;:</p>
-			<div class="info-block">
-			  <dl>
-				<dt>Nom</dt><dd></dd>
-				<dt>Statut juridique</dt><dd></dd>
-				<dt>SIRET</dt><dd> 939 059 895 00028</dd>
-				<dt>Activité</dt><dd></dd>
-				<dt>Adresse professionnelle</dt><dd>Fitness Club — Energy'B<br>38 route du Crotoy<br>80120 Rue</dd>
-				<dt>Téléphone</dt><dd><a href="tel:+"></a></dd>
-				<dt>Email</dt><dd><a href="mailto:energyb@outlook.fr">energyb@outlook.fr</a></dd>
-			  </dl>
-			</div>
-		  </section>
-
-		  <section>
-			<h2><span class="num">02</span>Directrice de la publication</h2>
-			<p>Madame ???? en sa qualité d'éditrice du site.</p>
-		  </section>
-
-		  <section>
-			<h2><span class="num">03</span>Hébergeur</h2>
-			<p>Le site est hébergé par&nbsp;:</p>
-			<div class="info-block">
-			  <dl>
-				<dt>Société</dt><dd>GitHub, Inc.</dd>
-				<dt>Adresse</dt><dd>88 Colin P. Kelly Jr. St., <br>San Francisco, CA 94107, <br>USA</dd>
-			  </dl>
-			</div>
-		  </section>
-
-		  <section>
-			<h2><span class="num">04</span>Propriété intellectuelle</h2>
-			<p>L'ensemble des éléments présents sur ce site (textes, images, photographies, logos, graphismes, mise en page, charte visuelle) est la propriété exclusive de Shirley Lascols, sauf mention contraire explicite.</p>
-			<p>Toute reproduction, représentation, modification, publication, adaptation ou exploitation, totale ou partielle, des éléments du site, par quelque procédé que ce soit, est strictement interdite sans l'autorisation écrite préalable de l'éditrice.</p>
-			<p>Toute exploitation non autorisée est susceptible de constituer une contrefaçon, sanctionnée par les articles L.335-2 et suivants du Code de la propriété intellectuelle.</p>
-		  </section>
-
-		  <section>
-			<h2><span class="num">05</span>Crédits</h2>
-			<p>Les témoignages publiés sur ce site sont reproduits avec l'accord exprès des personnes concernées. Les photographies sont la propriété de Shirley Lascols ou utilisées avec autorisation.</p>
-		  </section>
-
-		  <section>
-			<h2><span class="num">06</span>Liens hypertextes</h2>
-			<p>Le site peut contenir des liens hypertextes vers d'autres sites internet. Shirley Lascols n'exerce aucun contrôle sur le contenu de ces sites tiers et décline toute responsabilité quant aux informations qui y sont publiées.</p>
-		  </section>
-
-		  <section>
-			<h2><span class="num">07</span>Données personnelles &amp; cookies</h2>
-			<p>Pour toutes les informations relatives à la collecte, au traitement et à la conservation de vos données personnelles, merci de consulter la <a href="rgpd.html">politique de confidentialité (RGPD)</a>.</p>
-			<p>Le site n'utilise pas de cookies de mesure d'audience, de publicité ou de traçage. Seuls des cookies techniques nécessaires à son bon fonctionnement peuvent être déposés.</p>
-		  </section>
-
-		  <section>
-			<h2><span class="num">08</span>Droit applicable</h2>
-			<p>Les présentes mentions légales sont régies par le droit français. En cas de litige, les tribunaux français seront seuls compétents.</p>
-		  </section>
-
-		  <p class="updated">Dernière mise à jour&nbsp;: 2026</p>
+    <div class="modal-close">
+      <button onclick="document.getElementById('mentionsModal').classList.remove('active');document.body.style.overflow='';" aria-label="Fermer">✕</button>
     </div>
+    
+    <div class="modal-header">
+      <div class="eyebrow">Informations légales</div>
+      <h1>Mentions <em>légales</em></h1>
+      <p class="lead">Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique, voici les informations relatives à l'éditeur et à l'hébergeur de ce site.</p>
+    </div>
+
+    <div class="modal-content">
+      <section>
+        <h2><span class="num">01</span>Éditeur du site &amp; Activité</h2>
+        <p>Le site <strong>Energy'B</strong> est édité par&nbsp;:</p>
+        <div class="info-block">
+          <dl>
+            <dt>Nom / Raison Sociale</dt><dd>[À COMPLÉTER : ex: SAS Energy'B ou Vos Noms]</dd>
+            <dt>Statut juridique</dt><dd>[À COMPLÉTER : ex: SAS au capital de XXX € / EURL / Entrepreneur Individuel]</dd>
+            <dt>SIRET</dt><dd>939 059 895 00028</dd>
+            <dt>RCS</dt><dd>Inscrit au RCS de [À COMPLÉTER : ex: Amiens]</dd>
+            <dt>N° TVA</dt><dd>[À COMPLÉTER : ex: FR XX XXXXXXXXX ou "Franchise de TVA - Art. 293 B du CGI"]</dd>
+            <dt>Activité</dt><dd>Salle de sport (Établissement APS) et Bar / Restauration rapide</dd>
+            <dt>Adresse professionnelle</dt><dd>Fitness Club — Energy'B<br>38 route du Crotoy<br>80120 Rue</dd>
+            <dt>Téléphone</dt><dd><a href="tel:+33637572443">06 37 57 24 43</a></dd>
+            <dt>Email</dt><dd><a href="mailto:energyb@outlook.fr">energyb@outlook.fr</a></dd>
+            
+            <!-- Mentions spécifiques obligatoires -->
+            <dt>Assurance RCP</dt><dd>[À COMPLÉTER : Nom de votre assurance] — Contrat N° [XXXXXX]. Couverture Responsabilité Civile Professionnelle obligatoire (Art. L. 321-1 du Code du sport).</dd>
+            <dt>Réglementation Sport</dt><dd>Établissement d'activités physiques et sportives (APS) déclaré auprès du SDJES de la Somme. Les éducateurs intervenant au club disposent de cartes professionnelles valides.</dd>
+            <dt>Licence Bar</dt><dd>Établissement titulaire d'une [À COMPLÉTER : ex: Petite Licence Restauration ou Licence III] pour l'exploitation de l'espace bar.</dd>
+          </dl>
+        </div>
+      </section>
+
+      <section>
+        <h2><span class="num">02</span>Direction de la publication</h2>
+        <p>Mesdames [À COMPLÉTER : Shirley Lascols et Laetitia] en qualité de co-fondatrices et représentantes légales de Energy'B.</p>
+      </section>
+	  <section>
+        <h2><span class="num">03</span>Propriété intellectuelle</h2>
+        <p>L'ensemble des éléments présents sur ce site (textes, visuels, logos, photos, charte graphique) est la propriété exclusive de Energy'B, sauf mention contraire explicite. Toute reproduction ou exploitation non autorisée est strictement interdite.</p>
+      </section>
+
+      <section>
+        <h2><span class="num">04</span>Liens hypertextes</h2>
+        <p>Le site peut contenir des liens vers des sites tiers (partenaires, réseaux sociaux). L'éditeur décline toute responsabilité quant aux contenus et politiques de confidentialité de ces sites externes.</p>
+      </section>
+      <section>
+        <h2><span class="num">05</span>Hébergeur</h2>
+        <p>Le site est hébergé par&nbsp;:</p>
+        <div class="info-block">
+          <dl>
+            <dt>Société</dt><dd>GitHub, Inc.</dd>
+            <dt>Adresse</dt><dd>88 Colin P. Kelly Jr. St., <br>San Francisco, CA 94107, <br>USA</dd>
+            <dt>Téléphone</dt><dd>+1 (877) 448-4820</dd>
+          </dl>
+        </div>
+      </section>
+
+
+      <p class="updated">Dernière mise à jour&nbsp;: 2026</p>
+    </div> 
   </div>
-</div>
 </div>
 
 <script>
